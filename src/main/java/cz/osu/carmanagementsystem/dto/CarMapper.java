@@ -15,7 +15,7 @@ public class CarMapper {
                 .id(car.getId())
                 .brand(car.getBrand())
                 .model(car.getModel())
-                .year(car.getYear())
+                .year(car.getProductionYear())
                 .vin(car.getVin())
                 .build();
     }
@@ -29,7 +29,7 @@ public class CarMapper {
                 .id(carDTO.getId())
                 .brand(carDTO.getBrand())
                 .model(carDTO.getModel())
-                .year(carDTO.getYear())
+                .productionYear(carDTO.getYear())
                 .vin(carDTO.getVin())
                 .build();
     }

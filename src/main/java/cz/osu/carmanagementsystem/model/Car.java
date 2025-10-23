@@ -19,8 +19,8 @@ public class Car {
     private String brand;
     @Column(name = "model", nullable = false)
     private String model;
-    @Column(name = "year", nullable = false)
-    private int year;
+    @Column(name = "production_year", nullable = false)
+    private int productionYear;
     @Column(name = "vin", nullable = false, unique = true)
     private String vin;
 }

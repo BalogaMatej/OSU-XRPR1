@@ -68,7 +68,7 @@ public class CarService {
 
                     existingCar.setBrand(carDTO.getBrand());
                     existingCar.setModel(carDTO.getModel());
-                    existingCar.setYear(carDTO.getYear());
+                    existingCar.setProductionYear(carDTO.getYear());
                     existingCar.setVin(carDTO.getVin());
 
                     Car updatedCar = carRepository.save(existingCar);
