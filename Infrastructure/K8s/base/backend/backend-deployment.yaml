@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: car-management-system-be-deployment
+  labels:
+    app: car-management-system-app
+spec:
+  replicas: 1 # Recommended starting replicas
+  selector:
+    matchLabels:
+      app: car-management-system-be
+  template:
+    metadata:
+      labels:
+        app: car-management-system-be
+    spec:
+      containers:
+      - name: car-management-system-be-container
+        image: osudreamteam/car-management-system-be-java-spring-boot-jdk21:latest 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        # Recommended: Add resource limits and requests
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        # Optional: Basic Liveness and Readiness Probes (adjust paths/ports as needed)
+        livenessProbe:
+          httpGet:
+            path: /actuator/health/liveness # Common Spring Boot Actuator path
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /actuator/health/readiness # Common Spring Boot Actuator path
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
