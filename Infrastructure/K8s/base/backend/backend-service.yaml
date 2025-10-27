@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: car-management-system-be-service
+  labels:
+    app: car-management-system-be
+spec:
+  # LoadBalancer is ideal for cloud environments (EKS, GKE, AKS) to get an external IP.
+  # Use NodePort or ClusterIP for internal access or local clusters (Minikube).
+  type: LoadBalancer 
+  ports:
+    - port: 8080 # The port the Service exposes
+      targetPort: 8080 # The port the application container is listening on (from Deployment)
+      protocol: TCP
+  selector:
+    app: car-management-system-be

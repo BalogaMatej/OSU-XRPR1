@@ -11,7 +11,7 @@ resources:
   - mysql_pma/mysql-service.yaml
   - mysql_pma/mysql-statefulset.yaml
   - mysql_pma/phpmyadmin.yaml
+  - backend/backend-deployment.yaml
+  - backend/backend-service.yaml
 
-  
-  #- backend
   
