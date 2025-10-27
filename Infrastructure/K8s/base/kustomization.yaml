@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namePrefix: fleet-manager-
+
+# List all the core, reusable YAML manifests
+resources:
+  - frontend/frontend-deployment.yaml
+  - frontend/frontend-service.yaml
+  - mysql_pma/mysql-pvc.yaml
+  - mysql_pma/mysql-service.yaml
+  - mysql_pma/mysql-statefulset.yaml
+  - mysql_pma/phpmyadmin.yaml
+
+  
+  #- backend
+  

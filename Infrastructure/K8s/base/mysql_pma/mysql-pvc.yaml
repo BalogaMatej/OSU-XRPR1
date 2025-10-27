@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: mysql
+spec:
+  accessModes:
+    - ReadWriteOnce # Can be mounted by one node at a time
+  resources:
+    requests:
+      storage: 2Gi # Request 5GB of storage (adjust as needed)

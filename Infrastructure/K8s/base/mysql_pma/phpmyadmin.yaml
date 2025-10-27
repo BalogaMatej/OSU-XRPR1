@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin-deployment
+  labels:
+    app: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+      - name: phpmyadmin-container
+        image: phpmyadmin/phpmyadmin:latest
+        ports:
+        - containerPort: 80
+        env:
+        # Crucial: Tells PhpMyAdmin how to find the database
+        - name: PMA_HOST
+          value: fleet-manager-mysql-service # Use the DNS name of the MySQL Service
+        - name: PMA_PORT
+          value: "3306"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin-service
+  labels:
+    app: phpmyadmin
+spec:
+  type: ClusterIP # Keep it internal, expose via Ingress for external access
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: phpmyadmin

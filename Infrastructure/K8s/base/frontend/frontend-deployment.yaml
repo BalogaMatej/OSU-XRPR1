@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+    tier: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        tier: web
+    spec:    
+      containers:
+      - name: frontend-app
+        image: matejbaloga/training-frontend-my-react-app:latest
+        imagePullPolicy: Always
+        env:
+          - name: api-url
+            value: "http://backend-api-service:8080"
+
+        ports:
+        - containerPort: 80 
+          name: http-web
+          
+        resources:
+          requests:
+            cpu: "50m"  
+            memory: "64Mi" 
+          limits:
+            cpu: "100m" 
+            memory: "128Mi" 
+            
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
