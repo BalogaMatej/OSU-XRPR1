@@ -35,7 +35,7 @@ COPY --from=builder /app/target/*.jar /app/app.jar
 # Use java -jar for the executable JAR or specific class path for layered approach
 #ENTRYPOINT ["java", "-cp", "app.jar", "org.springframework.boot.loader.JarLauncher"]
 #ENTRYPOINT ["java","-jar","/app/app.jar"]
-ENTRYPOINT ["java","-jar","app/target/car-management-system-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/app/app.jar"]
 
 # Expose the default Spring Boot port
 EXPOSE 8080
